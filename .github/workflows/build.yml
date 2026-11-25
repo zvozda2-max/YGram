@@ -35,9 +35,14 @@ jobs:
           path = "/Users/Shared/telegram-ios/build-system/appstore-configuration.json"
           with open(path, "r") as f:
               data = json.load(f)
-          data["api_id"] = int(os.environ["TG_API_ID"])
-          data["api_hash"] = os.environ["TG_API_HASH"]
+          data["api_id"] = str(os.environ["TG_API_ID"])
+          data["api_hash"] = str(os.environ["TG_API_HASH"])
           data["bundle_id"] = "com.yura.ygram"
+          data["is_appstore_build"] = "false"
+          data["is_internal_build"] = "true"
+          data["enable_siri"] = False
+          data["enable_icloud"] = False
+          data["app_specific_url_scheme"] = "ygram"
           with open(path, "w") as f:
               json.dump(data, f, indent=2)
           '
